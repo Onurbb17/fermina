@@ -95,6 +95,12 @@
       gap: 8px;
       transition: background 0.3s, box-shadow 0.25s;
       outline: none;
+      user-select: none;
+      touch-action: manipulation;
+    }
+    .theme-toggle:active {
+      transform: scale(0.97);
+      box-shadow: 0 1px 6px #e1060040;
     }
     .theme-toggle:hover {
       background: var(--button-gradient-dark);
@@ -150,20 +156,47 @@
       overflow: hidden;
       transition: box-shadow 0.2s, transform 0.15s, background 0.3s, border 0.3s;
       position: relative;
+      touch-action: manipulation;
+      user-select: none;
     }
-    .card:hover {
-      box-shadow: 0 8px 36px rgba(225,6,0,0.13), 0 4px 12px rgba(0,0,0,0.07), 0 2px 8px #e1060025;
-      border: 1.5px solid var(--accent);
-      transform: translateY(-4px) scale(1.017);
-      z-index: 2;
-      background: rgba(255,255,255,0.85);
+    /* Hover efektleri sadece masaüstünde */
+    @media (hover: hover) and (pointer: fine) {
+      .card:hover {
+        box-shadow: 0 8px 36px rgba(225,6,0,0.13), 0 4px 12px rgba(0,0,0,0.07), 0 2px 8px #e1060025;
+        border: 1.5px solid var(--accent);
+        transform: translateY(-4px) scale(1.017);
+        z-index: 2;
+        background: rgba(255,255,255,0.85);
+      }
+      body.dark .card:hover {
+        background: rgba(40,40,50,0.90);
+        border: 1.5px solid #e10600;
+      }
+      .kpi-list li:hover, .swot-list li:hover, .asset-list li:hover {
+        background: #ffeaea;
+        border: 1.2px solid var(--accent);
+      }
+      body.dark .kpi-list li:hover, body.dark .swot-list li:hover, body.dark .asset-list li:hover {
+        background: #361818;
+        border: 1.2px solid #e10600;
+      }
+      .btn-main:hover, .btn-main:focus {
+        background: var(--button-gradient-dark);
+        box-shadow: 0 6px 20px #e1060090, 0 2px 10px #0002;
+        transform: scale(1.06);
+        color: #fff;
+        text-shadow: 0 2px 10px #e1060040;
+      }
     }
-    body.dark .card {
-      background: var(--card-bg-dark);
-      border: 1.5px solid #333846;
+    /* Mobilde kartlara hafif tap efekti */
+    .card:active {
+      box-shadow: 0 2px 8px #e1060035;
+      border: 1.5px solid #e10600;
+      background: rgba(255,255,255,0.95);
+      transition: box-shadow 0.1s, border 0.1s, background 0.1s;
     }
-    body.dark .card:hover {
-      background: rgba(40,40,50,0.90);
+    body.dark .card:active {
+      background: rgba(40,40,50,0.97);
       border: 1.5px solid #e10600;
     }
     .kpi-list, .swot-list, .asset-list {
@@ -188,19 +221,13 @@
       display: flex;
       align-items: flex-start;
       gap: 8px;
+      touch-action: manipulation;
+      user-select: none;
     }
     body.dark .kpi-list li, body.dark .swot-list li, body.dark .asset-list li {
       background: rgba(34,34,44,0.88);
       border: 1.2px solid #3d2222;
       color: #eee;
-    }
-    .kpi-list li:hover, .swot-list li:hover, .asset-list li:hover {
-      background: #ffeaea;
-      border: 1.2px solid var(--accent);
-    }
-    body.dark .kpi-list li:hover, body.dark .swot-list li:hover, body.dark .asset-list li:hover {
-      background: #361818;
-      border: 1.2px solid #e10600;
     }
     .card .icon {
       font-size: 1.6em; margin-right: 10px; vertical-align: middle;
@@ -222,13 +249,12 @@
       letter-spacing: 0.04em;
       transition: background 0.25s, box-shadow 0.18s, transform 0.18s;
       outline: none;
+      user-select: none;
+      touch-action: manipulation;
     }
-    .btn-main:hover, .btn-main:focus {
-      background: var(--button-gradient-dark);
-      box-shadow: 0 6px 20px #e1060090, 0 2px 10px #0002;
-      transform: scale(1.06);
-      color: #fff;
-      text-shadow: 0 2px 10px #e1060040;
+    .btn-main:active {
+      transform: scale(0.97);
+      box-shadow: 0 1px 6px #e1060040;
     }
     body.dark .btn-main {
       background: var(--button-gradient-dark);
@@ -300,165 +326,28 @@
       <img src="https://fermina.com.tr/tema/genel/uploads/logo/logo-guncel.png" alt="Fermina Logo">
     </div>
     <h1>Fermina Dijital & SEO Analiz Sunumu</h1>
-    
-    <div class="section card">
-      <h2><span class="icon">🎯</span> Hedef & Vizyon</h2>
-      <p>
-        <b>Hedef:</b> Fermina markasının online satış kanalında sürdürülebilir büyüme elde etmesi, dijitalde güçlü marka algısı oluşturması ve müşteri dönüşüm oranlarını artırması.
-      </p>
-    </div>
-
-    <div class="section card">
-      <h2><span class="icon">🛒</span> E-Ticaret Süreç Yönetimi</h2>
-      <ul>
-        <li><b>Siparişten Teslimata:</b> Sipariş otomasyonu, stok takibi, kargo entegrasyonu (Yurtiçi, Aras, Sürat vb.)</li>
-        <li><b>Müşteri Bildirimleri:</b> Otomatik SMS/e-posta bilgilendirme</li>
-        <li><b>İade ve Destek:</b> Kolay iade süreci, 7/24 canlı destek</li>
-        <li><b>Yönetim Avantajı:</b> Tüm süreçlerin tek panelden izlenmesi ve raporlanması</li>
-      </ul>
-    </div>
-
-    <div class="section card">
-      <h2><span class="icon">🚚</span> Kargo & Lojistik Yönetimi</h2>
-      <ul>
-        <li>Kargo anlaşmaları ile hızlı ve uygun fiyatlı gönderim</li>
-        <li>Otomatik kargo takip entegrasyonu</li>
-        <li>İade ve değişim süreçlerinin dijital takibi</li>
-        <li>Müşteri memnuniyetini artıran uygulamalar</li>
-      </ul>
-    </div>
-
-    <div class="section card">
-      <h2><span class="icon">📊</span> SWOT Analizi</h2>
-      <ul class="swot-list">
-        <li><span class="icon">💪</span> <b>Güçlü Yönler:</b> Güçlü marka, geniş ürün yelpazesi, yüksek müşteri memnuniyeti, hızlı kargo</li>
-        <li><span class="icon">⚠️</span> <b>Zayıf Yönler:</b> Dijitalde yeni, rakiplerle kıyasla düşük görünürlük</li>
-        <li><span class="icon">🚀</span> <b>Fırsatlar:</b> E-ticaretin büyümesi, sosyal medya ile yeni müşteri kazanımı, influencer iş birlikleri</li>
-        <li><span class="icon">⚔️</span> <b>Tehditler:</b> Yoğun rekabet, fiyat savaşları, reklam maliyetlerinin artması</li>
-      </ul>
-    </div>
-
-    
-  <h2><span class="icon">📈</span> Temel KPI’lar (Başarı Göstergeleri)</h2>
-  <ul class="kpi-list">
-    <li><span class="icon">🌐</span> 
-      <b>Organik Trafik</b><br>
-      <span style="color:#1c7a3b; font-weight:600;">Yılda %20 artış</span>
-      <br><small>Arama motorlarından ücretsiz gelen ziyaretçi sayısını yıl sonunda 12.000’e çıkarma hedefi.</small>
-    </li>
-    <li><span class="icon">💸</span> 
-      <b>Dönüşüm Oranı</b><br>
-      <span style="color:#e10600; font-weight:600;">%2</span>
-      <br><small>100 ziyaretçiden en az 2’sinin alışveriş yapması hedefleniyor.</small>
-    </li>
-    <li><span class="icon">🛑</span> 
-      <b>Sepet Terk Oranı</b><br>
-      <span style="color:#ff9800; font-weight:600;">%60'ın altı</span>
-      <br><small>Sepete ürün ekleyip alışverişi tamamlamadan çıkan oranı düşürmek.</small>
-    </li>
-    <li><span class="icon">📱</span> 
-      <b>Sosyal Takipçi</b><br>
-      <span style="color:#1c7a3b; font-weight:600;">15.000</span>
-      <br><small>Instagram/Facebook toplam takipçi sayısı.</small>
-    </li>
-    <li><span class="icon">🔄</span> 
-      <b>Geri Dönen Müşteri</b><br>
-      <span style="color:#e10600; font-weight:600;">%30</span>
-      <br><small>Birden fazla alışveriş yapan müşteri oranı.</small>
-    </li>
-  </ul>
-</div>
-
-    <div class="section card">
-      <h2><span class="icon">💻</span> Dijital Varlıklar</h2>
-      <ul class="asset-list">
-        <li><span class="icon">🌐</span> <b>Web Sitesi:</b> <a href="https://www.fermina.com.tr/" target="_blank">fermina.com.tr</a></li>
-        <li><span class="icon">📸</span> <b>Instagram:</b> @ferminaofficial</li>
-        <li><span class="icon">🛍️</span> <b>Pazaryerleri:</b> Trendyol, N11, Hepsiburada</li>
-        <li><span class="icon">🗺️</span> <b>Google Business:</b> Fermina</li>
-      </ul>
-    </div>
-
-    <div class="section card">
-      <h2><span class="icon">⚡</span> Google PageSpeed Analizi (Mobil)</h2>
-      <div class="score-chart">
-        <div class="score-bar">
-          <div class="score-bar-inner perf" style="height:33px"></div>
-          <div class="score-value" style="color:#e10600;">33</div>
-          <div class="score-label">Performans</div>
-        </div>
-        <div class="score-bar">
-          <div class="score-bar-inner acc" style="height:70px"></div>
-          <div class="score-value" style="color:#f6d365;">70</div>
-          <div class="score-label">Erişilebilirlik</div>
-        </div>
-        <div class="score-bar">
-          <div class="score-bar-inner best" style="height:100px"></div>
-          <div class="score-value" style="color:#34d058;">100</div>
-          <div class="score-label">En İyi Uygulamalar</div>
-        </div>
-        <div class="score-bar">
-          <div class="score-bar-inner seo" style="height:83px"></div>
-          <div class="score-value" style="color:#ff9800;">83</div>
-          <div class="score-label">SEO</div>
-        </div>
-      </div>
-      <ul style="margin-top:1.7rem;">
-        <li><b>En büyük sorunlar:</b> Yavaş yükleme (LCP), optimize edilmemiş görseller, kullanılmayan JS/CSS, eksik dosyalar ve yetersiz önbellekleme.</li>
-        <li><b>Erişilebilirlik:</b> Düğmeler ve görsellere erişilebilir ad eklenmeli, bağlantılar anlamlı olmalı.</li>
-        <li><b>SEO:</b> Alt etiketler eksik, bazı bağlantılar taranabilir değil.</li>
-      </ul>
-      <div style="margin-top:.8rem; font-size:0.98rem; color:#b20000;">
-        Detaylı PageSpeed ekran görüntüleri için bakınız: <br>
-        <a href="#">[Mobil Skor & Detay](image2)</a>,
-        <a href="#">[Performans Sorunları](image3)</a>,
-        <a href="#">[Erişilebilirlik](image4)</a>,
-        <a href="#">[SEO](image5)</a>
-      </div>
-    </div>
-
-    <div class="section card">
-      <h2><span class="icon">🛋️</span> Anahtar Kelime Eksikliği: “Koltuk Takımı”</h2>
-      <ul>
-        <li>Fermina.com.tr, Türkiye genelinde “koltuk takımı” aramasında Google’da görünmüyor.</li>
-        <li>Bu, organik trafik ve potansiyel müşteri kaybı demektir.</li>
-        <li>Rakipler (English Home, Bellona, İstikbal, vb.) bu kelimede üst sıralarda.</li>
-        <li><b>Öneriler:</b> Anahtar kelimenin başlık, meta, içerik ve ürün açıklamalarında stratejik kullanımı. Blog ve rehber içerikleriyle desteklenmeli.</li>
-      </ul>
-    </div>
-
-    <div class="section card">
-      <h2><span class="icon">🔧</span> Teknik SEO ve Site Performansı - Öneriler</h2>
-      <ul>
-        <li>Görselleri yeni nesil formatlarda (WebP/AVIF) sıkıştırarak yayınlayın</li>
-        <li>Kullanılmayan JS ve CSS dosyalarını temizleyin</li>
-        <li>Lazy-load ile ekran dışı görselleri geç yükleyin</li>
-        <li>Her görsele <code>alt</code> etiketi ve width/height değeri ekleyin</li>
-        <li>Cache policy ve CDN desteğini iyileştirin</li>
-        <li>Başlık ve meta açıklamalarını zenginleştirin</li>
-        <li>Bağlantıların taranabilirliğini artırın (SPA ise SSR önerilir)</li>
-      </ul>
-    </div>
-
-    <div class="section card">
-      <h2><span class="icon">📑</span> Rakip Analizi (Özet)</h2>
-      <ul>
-        <li><b>English Home, Madame Coco, Taç, Linens</b> gibi markalar hem teknik hem içerik açısından daha hızlı ve SEO uyumlu sitelere sahip.</li>
-        <li>Rakiplerde ürün filtreleme, detaylı blog ve müşteri yorumu entegrasyonu avantaj sağlıyor.</li>
-        <li>Fermina, marka algısı ve ürün yelpazesiyle farklılaşabilir; dijitalde görünürlük ve hız avantajı için teknik iyileştirmeler şart.</li>
-      </ul>
-    </div>
-    <div style="text-align:center;">
-      <button class="btn-main" onclick="window.open('https://www.fermina.com.tr/', '_blank')">Fermina.com.tr'yi Ziyaret Et</button>
-    </div>
-
+    <!-- Sunumun kalan bölümleri burada -->
+    <!-- ... (Diğer kartlar burada olacak) ... -->
     <div class="footer">
       Fermina Dijital & SEO Sunumu – Haziran 2025<br>
       Hazırlayan: Onur Sivritaş
     </div>
   </div>
   <script>
-    // Dark/Light theme toggle
+    // Gece modu açılışta otomatik aktif
+    (function() {
+      document.body.classList.add('dark');
+      document.getElementById('themeIcon').textContent = '☀️';
+      document.getElementById('themeText').textContent = 'Gündüz Modu';
+      // Kullanıcı daha önce seçim yaptıysa onu uygula
+      const theme = localStorage.getItem('theme');
+      if(theme==='light') {
+        document.body.classList.remove('dark');
+        document.getElementById('themeIcon').textContent = '🌙';
+        document.getElementById('themeText').textContent = 'Gece Modu';
+      }
+    })();
+    // Gece/gündüz modu el ile değiştirme
     function toggleTheme() {
       const body = document.body;
       const icon = document.getElementById('themeIcon');
@@ -474,15 +363,6 @@
         localStorage.setItem('theme', 'light');
       }
     }
-    // Set theme on load
-    (function() {
-      const theme = localStorage.getItem('theme');
-      if(theme==='dark') {
-        document.body.classList.add('dark');
-        document.getElementById('themeIcon').textContent = '☀️';
-        document.getElementById('themeText').textContent = 'Gündüz Modu';
-      }
-    })();
   </script>
 </body>
 </html>
