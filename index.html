@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Fermina Dijital & SEO Analiz Sunumu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Fermina için hazırlanan modern dijital ve SEO analiz sunumu">
+  <link rel="icon" type="image/png" href="https://fermina.com.tr/tema/genel/uploads/logo/logo-guncel.png">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-bg: #f8f8f8;
+      --accent: #e10600;
+      --accent-dark: #b20000;
+      --accent2: #fff;
+      --card-bg: #fff;
+      --shadow: 0 8px 32px rgba(0,0,0,0.10);
+      --footer-bg: #e10600;
+      --title-font: 'Roboto Slab', serif;
+      --text-font: 'Montserrat', Arial, sans-serif;
+    }
+    html, body {
+      margin: 0; padding: 0;
+      min-height: 100%;
+      font-family: var(--text-font);
+      background: var(--main-bg);
+      color: #222;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.14;
+      pointer-events: none;
+      filter: grayscale(0.25) blur(1px);
+    }
+    .container {
+      max-width: 1000px;
+      margin: 2.5rem auto;
+      padding: 2.5rem 2rem 1rem 2rem;
+      background: var(--card-bg);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      position: relative;
+      z-index: 1;
+    }
+    .logo-row {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .logo-row img {
+      height: 64px;
+      margin-bottom: 1rem;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 4px 18px rgba(225,6,0,0.11), 0 1.5px 4px rgba(0,0,0,0.03);
+      padding: 8px 28px;
+    }
+    h1, h2, h3 {
+      font-family: var(--title-font);
+      color: var(--accent-dark);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-top: 0.4rem;
+      margin-bottom: 0.8rem;
+      color: var(--accent);
+      text-shadow: 0 3px 12px rgba(225,6,0,0.04);
+      text-align: center;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 0.8rem;
+      margin-bottom: 1rem;
+      color: var(--accent-dark);
+      text-shadow: 0 2px 7px rgba(225,6,0,0.05);
+      border-left: 5px solid var(--accent);
+      padding-left: 12px;
+    }
+    .section {
+      margin-bottom: 2.5rem;
+    }
+    .card {
+      background: linear-gradient(112deg, #fff, #fff9f9 80%);
+      border-radius: 18px;
+      box-shadow: 0 2px 14px rgba(225,6,0,0.03), var(--shadow);
+      padding: 1.5rem 1.8rem;
+      margin-bottom: 1.8rem;
+      position: relative;
+      transition: box-shadow 0.2s, transform 0.15s;
+      border: 1.5px solid #ececec;
+      overflow: hidden;
+    }
+    .card:hover {
+      box-shadow: 0 8px 36px rgba(225,6,0,0.13), 0 4px 12px rgba(0,0,0,0.07), 0 2px 8px #e1060025;
+      border: 1.5px solid var(--accent);
+      transform: translateY(-4px) scale(1.015);
+      z-index: 2;
+    }
+    .kpi-list, .swot-list, .asset-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .kpi-list li, .swot-list li, .asset-list li {
+      flex: 1 1 220px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px #e1060012;
+      padding: 1rem 1.1rem;
+      margin-bottom: 0;
+      min-width: 180px;
+      font-size: 1.09rem;
+      transition: background 0.18s;
+      border: 1.2px solid #f0d2d2;
+    }
+    .kpi-list li:hover, .swot-list li:hover, .asset-list li:hover {
+      background: #ffeaea;
+      border: 1.2px solid var(--accent);
+    }
+    .footer {
+      background: var(--footer-bg);
+      color: #fff;
+      padding: 1.6rem 0 1.1rem 0;
+      text-align: center;
+      margin-top: 2.5rem;
+      border-radius: 0 0 18px 18px;
+      font-size: 1.08rem;
+      letter-spacing: 0.04em;
+      box-shadow: 0 -2px 12px rgba(225,6,0,0.07);
+    }
+    /* Grafik ve icon stilleri */
+    .score-chart {
+      display: flex; align-items: flex-end; gap: 1.6rem; margin: 1.5rem 0 0 0;
+      justify-content: center;
+    }
+    .score-bar {
+      width: 48px; height: 130px; display: flex; flex-direction:column; align-items: center; justify-content: flex-end;
+    }
+    .score-bar-inner {
+      border-radius: 8px 8px 0 0;
+      width: 34px;
+      background: linear-gradient(112deg, #e10600 90%, #fff 100%);
+      margin-bottom: 6px;
+      transition: height 0.6s;
+    }
+    .score-label { font-size: 0.98rem; color: #444; margin-top: 2px; text-align: center;}
+    .score-value { font-size: 1.34rem; font-weight: bold; }
+    .score-bar-inner.perf { background: linear-gradient(112deg, #e10600 80%, #f85e5e 100%);}
+    .score-bar-inner.acc { background: linear-gradient(112deg, #f6d365 80%, #ffe5ba 100%);}
+    .score-bar-inner.best { background: linear-gradient(112deg, #34d058 80%, #bdfad3 100%);}
+    .score-bar-inner.seo { background: linear-gradient(112deg, #ff9800 80%, #ffe5c1 100%);}
+    /* Responsive */
+    @media (max-width: 700px) {
+      .container { padding: 0.6rem; }
+      h1 { font-size: 1.3rem; }
+      .logo-row img { height: 38px; }
+      .card { padding: 1rem 0.6rem; border-radius: 10px;}
+      .kpi-list, .swot-list, .asset-list { gap: 0.4rem;}
+      .kpi-list li, .swot-list li, .asset-list li { font-size: 0.97rem; min-width: 130px;}
+      .score-bar { width: 32px; }
+      .score-bar-inner { width: 20px; }
+    }
+    a { color: var(--accent-dark); text-decoration: underline; font-weight: 500;}
+    a:hover { color: #b20000; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo-row">
+      <img src="https://fermina.com.tr/tema/genel/uploads/logo/logo-guncel.png" alt="Fermina Logo">
+    </div>
+    <h1>Fermina Dijital & SEO Analiz Sunumu</h1>
+    
+    <div class="section card">
+      <h2>1. Hedef & Vizyon</h2>
+      <p>
+        <b>Hedef:</b> Fermina markasının online satış kanalında sürdürülebilir büyüme elde etmesi, dijitalde güçlü marka algısı oluşturması ve müşteri dönüşüm oranlarını artırması.
+      </p>
+    </div>
+
+    <div class="section card">
+      <h2>2. E-Ticaret Süreç Yönetimi</h2>
+      <ul>
+        <li><b>Siparişten Teslimata:</b> Sipariş otomasyonu, stok takibi, kargo entegrasyonu (Yurtiçi, Aras, Sürat vb.)</li>
+        <li><b>Müşteri Bildirimleri:</b> Otomatik SMS/e-posta bilgilendirme</li>
+        <li><b>İade ve Destek:</b> Kolay iade süreci, 7/24 canlı destek</li>
+        <li><b>Yönetim Avantajı:</b> Tüm süreçlerin tek panelden izlenmesi ve raporlanması</li>
+      </ul>
+    </div>
+
+    <div class="section card">
+      <h2>3. Kargo & Lojistik Yönetimi</h2>
+      <ul>
+        <li>Kargo anlaşmaları ile hızlı ve uygun fiyatlı gönderim</li>
+        <li>Otomatik kargo takip entegrasyonu</li>
+        <li>İade ve değişim süreçlerinin dijital takibi</li>
+        <li>Müşteri memnuniyetini artıran uygulamalar</li>
+      </ul>
+    </div>
+
+    <div class="section card">
+      <h2>4. SWOT Analizi</h2>
+      <ul class="swot-list">
+        <li><b>Güçlü Yönler:</b> Güçlü marka, geniş ürün yelpazesi, yüksek müşteri memnuniyeti, hızlı kargo</li>
+        <li><b>Zayıf Yönler:</b> Dijitalde yeni, rakiplerle kıyasla düşük görünürlük</li>
+        <li><b>Fırsatlar:</b> E-ticaretin büyümesi, sosyal medya ile yeni müşteri kazanımı, influencer iş birlikleri</li>
+        <li><b>Tehditler:</b> Yoğun rekabet, fiyat savaşları, reklam maliyetlerinin artması</li>
+      </ul>
+    </div>
+
+    <div class="section card">
+      <h2>5. Temel KPI’lar</h2>
+      <ul class="kpi-list">
+        <li><b>Organik Trafik</b><br> %X artış</li>
+        <li><b>Dönüşüm Oranı</b><br> %X hedef</li>
+        <li><b>Sepet Terk Oranı</b><br> %X altına düşürülecek</li>
+        <li><b>Sosyal Takipçi</b><br> X kişi/yıl</li>
+        <li><b>Geri Dönen Müşteri</b><br> %X</li>
+      </ul>
+    </div>
+
+    <div class="section card">
+      <h2>6. Dijital Varlıklar</h2>
+      <ul class="asset-list">
+        <li><b>Web Sitesi:</b> <a href="https://www.fermina.com.tr/" target="_blank">fermina.com.tr</a></li>
+        <li><b>Instagram:</b> @ferminaofficial</li>
+        <li><b>Pazaryerleri:</b> Trendyol, N11, Hepsiburada</li>
+        <li><b>Google Business:</b> Fermina</li>
+      </ul>
+    </div>
+
+    <div class="section card">
+      <h2>7. Google PageSpeed Analizi (Mobil)</h2>
+      <div class="score-chart">
+        <div class="score-bar">
+          <div class="score-bar-inner perf" style="height:33px"></div>
+          <div class="score-value" style="color:#e10600;">33</div>
+          <div class="score-label">Performans</div>
+        </div>
+        <div class="score-bar">
+          <div class="score-bar-inner acc" style="height:70px"></div>
+          <div class="score-value" style="color:#f6d365;">70</div>
+          <div class="score-label">Erişilebilirlik</div>
+        </div>
+        <div class="score-bar">
+          <div class="score-bar-inner best" style="height:100px"></div>
+          <div class="score-value" style="color:#34d058;">100</div>
+          <div class="score-label">En İyi Uygulamalar</div>
+        </div>
+        <div class="score-bar">
+          <div class="score-bar-inner seo" style="height:83px"></div>
+          <div class="score-value" style="color:#ff9800;">83</div>
+          <div class="score-label">SEO</div>
+        </div>
+      </div>
+      <ul style="margin-top:1.7rem;">
+        <li><b>En büyük sorunlar:</b> Yavaş yükleme (LCP), optimize edilmemiş görseller, kullanılmayan JS/CSS, eksik dosyalar ve yetersiz önbellekleme.</li>
+        <li><b>Erişilebilirlik:</b> Düğmeler ve görsellere erişilebilir ad eklenmeli, bağlantılar anlamlı olmalı.</li>
+        <li><b>SEO:</b> Alt etiketler eksik, bazı bağlantılar taranabilir değil.</li>
+      </ul>
+      <div style="margin-top:.8rem; font-size:0.98rem; color:#b20000;">
+        Detaylı PageSpeed ekran görüntüleri için bakınız: <br>
+        <a href="#">[Mobil Skor & Detay](image2)</a>,
+        <a href="#">[Performans Sorunları](image3)</a>,
+        <a href="#">[Erişilebilirlik](image4)</a>,
+        <a href="#">[SEO](image5)</a>
+      </div>
+    </div>
+
+    <div class="section card">
+      <h2>8. Teknik SEO ve Site Performansı - Öneriler</h2>
+      <ul>
+        <li>Görselleri yeni nesil formatlarda (WebP/AVIF) sıkıştırarak yayınlayın</li>
+        <li>Kullanılmayan JS ve CSS dosyalarını temizleyin</li>
+        <li>Lazy-load ile ekran dışı görselleri geç yükleyin</li>
+        <li>Her görsele <code>alt</code> etiketi ve width/height değeri ekleyin</li>
+        <li>Cache policy ve CDN desteğini iyileştirin</li>
+        <li>Başlık ve meta açıklamalarını zenginleştirin</li>
+        <li>Bağlantıların taranabilirliğini artırın (SPA ise SSR önerilir)</li>
+      </ul>
+    </div>
+
+    <div class="section card">
+      <h2>9. Rakip Analizi (Özet)</h2>
+      <ul>
+        <li><b>English Home, Madame Coco, Taç, Linens</b> gibi markalar hem teknik hem içerik açısından daha hızlı ve SEO uyumlu sitelere sahip.</li>
+        <li>Rakiplerde ürün filtreleme, detaylı blog ve müşteri yorumu entegrasyonu avantaj sağlıyor.</li>
+        <li>Fermina, marka algısı ve ürün yelpazesiyle farklılaşabilir; dijitalde görünürlük ve hız avantajı için teknik iyileştirmeler şart.</li>
+      </ul>
+    </div>
+    <div class="section card">
+  <h2>10. Anahtar Kelime Eksikliği: “Koltuk Takımı”</h2>
+  <ul>
+    <li>Fermina.com.tr, Türkiye genelinde “koltuk takımı” aramasında Google’da görünmüyor.</li>
+    <li>Bu, organik trafik ve potansiyel müşteri kaybı demektir.</li>
+    <li>Rakipler (English Home, Bellona, İstikbal, vb.) bu kelimede üst sıralarda.</li>
+    <li><b>Öneriler:</b> Anahtar kelimenin başlık, meta, içerik ve ürün açıklamalarında stratejik kullanımı. Blog ve rehber içerikleriyle desteklenmeli.</li>
+  </ul>
+   <div
+
+    <div class="footer">
+      Fermina Dijital & SEO Sunumu – Haziran 2025<br>
+      Hazırlayan: Onur Sivritaş
+    </div>
+  </div>
+</body>
+</html>
