@@ -4,21 +4,25 @@
   <meta charset="UTF-8">
   <title>Fermina Dijital & SEO Analiz Sunumu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Fermina için hazırlanan modern dijital ve SEO analiz sunumu">
+  <meta name="description" content="Fermina için premium dijital ve SEO analiz sunumu">
   <link rel="icon" type="image/png" href="https://fermina.com.tr/tema/genel/uploads/logo/logo-guncel.png">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
     :root {
       --main-bg: #f8f8f8;
+      --main-bg-dark: #22242a;
       --accent: #e10600;
       --accent-dark: #b20000;
-      --accent2: #fff;
-      --card-bg: #fff;
+      --card-bg: rgba(255,255,255,0.60);
+      --card-bg-dark: rgba(40,40,50,0.72);
       --shadow: 0 8px 32px rgba(0,0,0,0.10);
       --footer-bg: #e10600;
-      --title-font: 'Roboto Slab', serif;
+      --footer-bg-dark: #18191d;
+      --title-font: 'Playfair Display', serif;
       --text-font: 'Montserrat', Arial, sans-serif;
+      --button-gradient: linear-gradient(90deg, #e10600 30%, #ff6b6b 100%);
+      --button-gradient-dark: linear-gradient(90deg, #ff8c8c 10%, #e10600 90%);
     }
     html, body {
       margin: 0; padding: 0;
@@ -26,6 +30,11 @@
       font-family: var(--text-font);
       background: var(--main-bg);
       color: #222;
+      transition: background 0.4s, color 0.4s;
+    }
+    body.dark {
+      background: var(--main-bg-dark);
+      color: #f6f6f6;
     }
     body::before {
       content: "";
@@ -35,17 +44,21 @@
       background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
       background-size: cover;
       background-position: center;
-      opacity: 0.14;
+      opacity: 0.13;
       pointer-events: none;
       filter: grayscale(0.25) blur(1px);
+      transition: opacity 0.4s;
+    }
+    body.dark::before {
+      opacity: 0.10;
+      filter: grayscale(0.6) blur(2px) brightness(0.7);
     }
     .container {
       max-width: 1000px;
       margin: 2.5rem auto;
       padding: 2.5rem 2rem 1rem 2rem;
-      background: var(--card-bg);
+      background: transparent;
       border-radius: 22px;
-      box-shadow: var(--shadow);
       position: relative;
       z-index: 1;
     }
@@ -61,11 +74,43 @@
       box-shadow: 0 4px 18px rgba(225,6,0,0.11), 0 1.5px 4px rgba(0,0,0,0.03);
       padding: 8px 28px;
     }
+    .theme-toggle {
+      position: absolute;
+      top: 18px;
+      right: 30px;
+      z-index: 10;
+      background: var(--button-gradient);
+      color: #fff;
+      border: none;
+      border-radius: 40px;
+      padding: 7px 24px 7px 18px;
+      font-size: 1.08rem;
+      font-family: var(--text-font);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      box-shadow: 0 2px 12px #e1060040;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.3s, box-shadow 0.25s;
+      outline: none;
+    }
+    .theme-toggle:hover {
+      background: var(--button-gradient-dark);
+      box-shadow: 0 4px 18px #e1060070, 0 1.5px 4px #0002;
+      transform: scale(1.04);
+    }
+    body.dark .theme-toggle {
+      background: var(--button-gradient-dark);
+      color: #fff;
+    }
     h1, h2, h3 {
       font-family: var(--title-font);
       color: var(--accent-dark);
       font-weight: 700;
       letter-spacing: 0.04em;
+      transition: color 0.3s;
     }
     h1 {
       font-size: 2.5rem;
@@ -80,29 +125,46 @@
       margin-top: 0.8rem;
       margin-bottom: 1rem;
       color: var(--accent-dark);
-      text-shadow: 0 2px 7px rgba(225,6,0,0.05);
       border-left: 5px solid var(--accent);
       padding-left: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    body.dark h1, body.dark h2, body.dark h3 {
+      color: #fff;
+      text-shadow: 0 2px 7px #e1060035;
     }
     .section {
       margin-bottom: 2.5rem;
     }
     .card {
-      background: linear-gradient(112deg, #fff, #fff9f9 80%);
+      background: var(--card-bg);
+      backdrop-filter: blur(10px) saturate(180%);
+      -webkit-backdrop-filter: blur(10px) saturate(180%);
       border-radius: 18px;
       box-shadow: 0 2px 14px rgba(225,6,0,0.03), var(--shadow);
       padding: 1.5rem 1.8rem;
       margin-bottom: 1.8rem;
-      position: relative;
-      transition: box-shadow 0.2s, transform 0.15s;
       border: 1.5px solid #ececec;
       overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.15s, background 0.3s, border 0.3s;
+      position: relative;
     }
     .card:hover {
       box-shadow: 0 8px 36px rgba(225,6,0,0.13), 0 4px 12px rgba(0,0,0,0.07), 0 2px 8px #e1060025;
       border: 1.5px solid var(--accent);
-      transform: translateY(-4px) scale(1.015);
+      transform: translateY(-4px) scale(1.017);
       z-index: 2;
+      background: rgba(255,255,255,0.85);
+    }
+    body.dark .card {
+      background: var(--card-bg-dark);
+      border: 1.5px solid #333846;
+    }
+    body.dark .card:hover {
+      background: rgba(40,40,50,0.90);
+      border: 1.5px solid #e10600;
     }
     .kpi-list, .swot-list, .asset-list {
       display: flex;
@@ -114,30 +176,63 @@
     }
     .kpi-list li, .swot-list li, .asset-list li {
       flex: 1 1 220px;
-      background: #fff;
+      background: rgba(255,255,255,0.85);
       border-radius: 10px;
       box-shadow: 0 2px 10px #e1060012;
       padding: 1rem 1.1rem;
       margin-bottom: 0;
       min-width: 180px;
       font-size: 1.09rem;
-      transition: background 0.18s;
       border: 1.2px solid #f0d2d2;
+      transition: background 0.18s, border 0.18s;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    body.dark .kpi-list li, body.dark .swot-list li, body.dark .asset-list li {
+      background: rgba(34,34,44,0.88);
+      border: 1.2px solid #3d2222;
+      color: #eee;
     }
     .kpi-list li:hover, .swot-list li:hover, .asset-list li:hover {
       background: #ffeaea;
       border: 1.2px solid var(--accent);
     }
-    .footer {
-      background: var(--footer-bg);
+    body.dark .kpi-list li:hover, body.dark .swot-list li:hover, body.dark .asset-list li:hover {
+      background: #361818;
+      border: 1.2px solid #e10600;
+    }
+    .card .icon {
+      font-size: 1.6em; margin-right: 10px; vertical-align: middle;
+      filter: drop-shadow(0 2px 10px #e1060055);
+    }
+    .btn-main {
+      display: inline-block;
+      background: var(--button-gradient);
       color: #fff;
-      padding: 1.6rem 0 1.1rem 0;
-      text-align: center;
-      margin-top: 2.5rem;
-      border-radius: 0 0 18px 18px;
-      font-size: 1.08rem;
+      padding: 0.67em 1.6em;
+      font-size: 1.12em;
+      font-family: var(--text-font);
+      font-weight: 700;
+      border: none;
+      border-radius: 38px;
+      box-shadow: 0 2px 14px #e1060070;
+      cursor: pointer;
+      margin: 0.7em 0 0 0;
       letter-spacing: 0.04em;
-      box-shadow: 0 -2px 12px rgba(225,6,0,0.07);
+      transition: background 0.25s, box-shadow 0.18s, transform 0.18s;
+      outline: none;
+    }
+    .btn-main:hover, .btn-main:focus {
+      background: var(--button-gradient-dark);
+      box-shadow: 0 6px 20px #e1060090, 0 2px 10px #0002;
+      transform: scale(1.06);
+      color: #fff;
+      text-shadow: 0 2px 10px #e1060040;
+    }
+    body.dark .btn-main {
+      background: var(--button-gradient-dark);
+      color: #fff;
     }
     /* Grafik ve icon stilleri */
     .score-chart {
@@ -160,6 +255,7 @@
     .score-bar-inner.acc { background: linear-gradient(112deg, #f6d365 80%, #ffe5ba 100%);}
     .score-bar-inner.best { background: linear-gradient(112deg, #34d058 80%, #bdfad3 100%);}
     .score-bar-inner.seo { background: linear-gradient(112deg, #ff9800 80%, #ffe5c1 100%);}
+    body.dark .score-label { color: #ddd; }
     /* Responsive */
     @media (max-width: 700px) {
       .container { padding: 0.6rem; }
@@ -170,12 +266,35 @@
       .kpi-list li, .swot-list li, .asset-list li { font-size: 0.97rem; min-width: 130px;}
       .score-bar { width: 32px; }
       .score-bar-inner { width: 20px; }
+      .theme-toggle { top: 8px; right: 8px; padding: 6px 12px 6px 10px; }
     }
     a { color: var(--accent-dark); text-decoration: underline; font-weight: 500;}
     a:hover { color: #b20000; }
+    body.dark a { color: #ffbaba; }
+    body.dark a:hover { color: #fff; }
+    .footer {
+      background: var(--footer-bg);
+      color: #fff;
+      padding: 1.6rem 0 1.1rem 0;
+      text-align: center;
+      margin-top: 2.5rem;
+      border-radius: 0 0 18px 18px;
+      font-size: 1.08rem;
+      letter-spacing: 0.04em;
+      box-shadow: 0 -2px 12px rgba(225,6,0,0.07);
+      transition: background 0.3s;
+    }
+    body.dark .footer {
+      background: var(--footer-bg-dark);
+      color: #fff;
+    }
   </style>
 </head>
 <body>
+  <button class="theme-toggle" onclick="toggleTheme()" title="Gece/Gündüz Modu">
+    <span id="themeIcon">🌙</span>
+    <span id="themeText">Gece Modu</span>
+  </button>
   <div class="container">
     <div class="logo-row">
       <img src="https://fermina.com.tr/tema/genel/uploads/logo/logo-guncel.png" alt="Fermina Logo">
@@ -183,14 +302,14 @@
     <h1>Fermina Dijital & SEO Analiz Sunumu</h1>
     
     <div class="section card">
-      <h2>1. Hedef & Vizyon</h2>
+      <h2><span class="icon">🎯</span> Hedef & Vizyon</h2>
       <p>
         <b>Hedef:</b> Fermina markasının online satış kanalında sürdürülebilir büyüme elde etmesi, dijitalde güçlü marka algısı oluşturması ve müşteri dönüşüm oranlarını artırması.
       </p>
     </div>
 
     <div class="section card">
-      <h2>2. E-Ticaret Süreç Yönetimi</h2>
+      <h2><span class="icon">🛒</span> E-Ticaret Süreç Yönetimi</h2>
       <ul>
         <li><b>Siparişten Teslimata:</b> Sipariş otomasyonu, stok takibi, kargo entegrasyonu (Yurtiçi, Aras, Sürat vb.)</li>
         <li><b>Müşteri Bildirimleri:</b> Otomatik SMS/e-posta bilgilendirme</li>
@@ -200,7 +319,7 @@
     </div>
 
     <div class="section card">
-      <h2>3. Kargo & Lojistik Yönetimi</h2>
+      <h2><span class="icon">🚚</span> Kargo & Lojistik Yönetimi</h2>
       <ul>
         <li>Kargo anlaşmaları ile hızlı ve uygun fiyatlı gönderim</li>
         <li>Otomatik kargo takip entegrasyonu</li>
@@ -210,38 +329,38 @@
     </div>
 
     <div class="section card">
-      <h2>4. SWOT Analizi</h2>
+      <h2><span class="icon">📊</span> SWOT Analizi</h2>
       <ul class="swot-list">
-        <li><b>Güçlü Yönler:</b> Güçlü marka, geniş ürün yelpazesi, yüksek müşteri memnuniyeti, hızlı kargo</li>
-        <li><b>Zayıf Yönler:</b> Dijitalde yeni, rakiplerle kıyasla düşük görünürlük</li>
-        <li><b>Fırsatlar:</b> E-ticaretin büyümesi, sosyal medya ile yeni müşteri kazanımı, influencer iş birlikleri</li>
-        <li><b>Tehditler:</b> Yoğun rekabet, fiyat savaşları, reklam maliyetlerinin artması</li>
+        <li><span class="icon">💪</span> <b>Güçlü Yönler:</b> Güçlü marka, geniş ürün yelpazesi, yüksek müşteri memnuniyeti, hızlı kargo</li>
+        <li><span class="icon">⚠️</span> <b>Zayıf Yönler:</b> Dijitalde yeni, rakiplerle kıyasla düşük görünürlük</li>
+        <li><span class="icon">🚀</span> <b>Fırsatlar:</b> E-ticaretin büyümesi, sosyal medya ile yeni müşteri kazanımı, influencer iş birlikleri</li>
+        <li><span class="icon">⚔️</span> <b>Tehditler:</b> Yoğun rekabet, fiyat savaşları, reklam maliyetlerinin artması</li>
       </ul>
     </div>
 
     <div class="section card">
-      <h2>5. Temel KPI’lar</h2>
+      <h2><span class="icon">📈</span> Temel KPI’lar</h2>
       <ul class="kpi-list">
-        <li><b>Organik Trafik</b><br> %X artış</li>
-        <li><b>Dönüşüm Oranı</b><br> %X hedef</li>
-        <li><b>Sepet Terk Oranı</b><br> %X altına düşürülecek</li>
-        <li><b>Sosyal Takipçi</b><br> X kişi/yıl</li>
-        <li><b>Geri Dönen Müşteri</b><br> %X</li>
+        <li><span class="icon">🌐</span> <b>Organik Trafik</b><br> %X artış</li>
+        <li><span class="icon">💸</span> <b>Dönüşüm Oranı</b><br> %X hedef</li>
+        <li><span class="icon">🛑</span> <b>Sepet Terk Oranı</b><br> %X altına düşürülecek</li>
+        <li><span class="icon">📱</span> <b>Sosyal Takipçi</b><br> X kişi/yıl</li>
+        <li><span class="icon">🔄</span> <b>Geri Dönen Müşteri</b><br> %X</li>
       </ul>
     </div>
 
     <div class="section card">
-      <h2>6. Dijital Varlıklar</h2>
+      <h2><span class="icon">💻</span> Dijital Varlıklar</h2>
       <ul class="asset-list">
-        <li><b>Web Sitesi:</b> <a href="https://www.fermina.com.tr/" target="_blank">fermina.com.tr</a></li>
-        <li><b>Instagram:</b> @ferminaofficial</li>
-        <li><b>Pazaryerleri:</b> Trendyol, N11, Hepsiburada</li>
-        <li><b>Google Business:</b> Fermina</li>
+        <li><span class="icon">🌐</span> <b>Web Sitesi:</b> <a href="https://www.fermina.com.tr/" target="_blank">fermina.com.tr</a></li>
+        <li><span class="icon">📸</span> <b>Instagram:</b> @ferminaofficial</li>
+        <li><span class="icon">🛍️</span> <b>Pazaryerleri:</b> Trendyol, N11, Hepsiburada</li>
+        <li><span class="icon">🗺️</span> <b>Google Business:</b> Fermina</li>
       </ul>
     </div>
 
     <div class="section card">
-      <h2>7. Google PageSpeed Analizi (Mobil)</h2>
+      <h2><span class="icon">⚡</span> Google PageSpeed Analizi (Mobil)</h2>
       <div class="score-chart">
         <div class="score-bar">
           <div class="score-bar-inner perf" style="height:33px"></div>
@@ -279,7 +398,17 @@
     </div>
 
     <div class="section card">
-      <h2>8. Teknik SEO ve Site Performansı - Öneriler</h2>
+      <h2><span class="icon">🛋️</span> Anahtar Kelime Eksikliği: “Koltuk Takımı”</h2>
+      <ul>
+        <li>Fermina.com.tr, Türkiye genelinde “koltuk takımı” aramasında Google’da görünmüyor.</li>
+        <li>Bu, organik trafik ve potansiyel müşteri kaybı demektir.</li>
+        <li>Rakipler (English Home, Bellona, İstikbal, vb.) bu kelimede üst sıralarda.</li>
+        <li><b>Öneriler:</b> Anahtar kelimenin başlık, meta, içerik ve ürün açıklamalarında stratejik kullanımı. Blog ve rehber içerikleriyle desteklenmeli.</li>
+      </ul>
+    </div>
+
+    <div class="section card">
+      <h2><span class="icon">🔧</span> Teknik SEO ve Site Performansı - Öneriler</h2>
       <ul>
         <li>Görselleri yeni nesil formatlarda (WebP/AVIF) sıkıştırarak yayınlayın</li>
         <li>Kullanılmayan JS ve CSS dosyalarını temizleyin</li>
@@ -292,27 +421,48 @@
     </div>
 
     <div class="section card">
-      <h2>9. Rakip Analizi (Özet)</h2>
+      <h2><span class="icon">📑</span> Rakip Analizi (Özet)</h2>
       <ul>
         <li><b>English Home, Madame Coco, Taç, Linens</b> gibi markalar hem teknik hem içerik açısından daha hızlı ve SEO uyumlu sitelere sahip.</li>
         <li>Rakiplerde ürün filtreleme, detaylı blog ve müşteri yorumu entegrasyonu avantaj sağlıyor.</li>
         <li>Fermina, marka algısı ve ürün yelpazesiyle farklılaşabilir; dijitalde görünürlük ve hız avantajı için teknik iyileştirmeler şart.</li>
       </ul>
     </div>
-    <div class="section card">
-  <h2>10. Anahtar Kelime Eksikliği: “Koltuk Takımı”</h2>
-  <ul>
-    <li>Fermina.com.tr, Türkiye genelinde “koltuk takımı” aramasında Google’da görünmüyor.</li>
-    <li>Bu, organik trafik ve potansiyel müşteri kaybı demektir.</li>
-    <li>Rakipler (English Home, Bellona, İstikbal, vb.) bu kelimede üst sıralarda.</li>
-    <li><b>Öneriler:</b> Anahtar kelimenin başlık, meta, içerik ve ürün açıklamalarında stratejik kullanımı. Blog ve rehber içerikleriyle desteklenmeli.</li>
-  </ul>
-   <div
+    <div style="text-align:center;">
+      <button class="btn-main" onclick="window.open('https://www.fermina.com.tr/', '_blank')">Fermina.com.tr'yi Ziyaret Et</button>
+    </div>
 
     <div class="footer">
       Fermina Dijital & SEO Sunumu – Haziran 2025<br>
       Hazırlayan: Onur Sivritaş
     </div>
   </div>
+  <script>
+    // Dark/Light theme toggle
+    function toggleTheme() {
+      const body = document.body;
+      const icon = document.getElementById('themeIcon');
+      const text = document.getElementById('themeText');
+      body.classList.toggle('dark');
+      if(body.classList.contains('dark')) {
+        icon.textContent = '☀️';
+        text.textContent = 'Gündüz Modu';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        icon.textContent = '🌙';
+        text.textContent = 'Gece Modu';
+        localStorage.setItem('theme', 'light');
+      }
+    }
+    // Set theme on load
+    (function() {
+      const theme = localStorage.getItem('theme');
+      if(theme==='dark') {
+        document.body.classList.add('dark');
+        document.getElementById('themeIcon').textContent = '☀️';
+        document.getElementById('themeText').textContent = 'Gündüz Modu';
+      }
+    })();
+  </script>
 </body>
 </html>
